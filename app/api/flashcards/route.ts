@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateFlashcards } from "@/lib/ai";
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest) {
       err instanceof Error ? err.message : "Gagal generate flashcard.";
 
     return NextResponse.json(
-      { error: "Gagal generate flashcard. Coba lagi." },
+      { error: `Gagal: ${message}` },
       { status: 500 }
     );
   }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateQuestions } from "@/lib/ai";
 import { generateId } from "@/lib/utils";
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
@@ -37,12 +38,8 @@ export async function POST(req: NextRequest) {
     const message =
       err instanceof Error ? err.message : "Gagal generate soal.";
 
-    if (message.includes("ANTHROPIC_API_KEY")) {
-      return NextResponse.json({ error: message }, { status: 500 });
-    }
-
     return NextResponse.json(
-      { error: "Gagal generate soal. Coba lagi." },
+      { error: `Gagal: ${message}` },
       { status: 500 }
     );
   }
