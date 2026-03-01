@@ -56,7 +56,9 @@ Fokus pada metode ilmiah dan pembuktian konsep.`;
       },
     });
 
-    return new Response(stream);
+    return new NextResponse(stream, {
+      headers: { "Content-Type": "text/event-stream" },
+    });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

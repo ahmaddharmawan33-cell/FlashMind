@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       err instanceof Error ? err.message : "Gagal generate flashcard.";
 
     return NextResponse.json(
-      { error: `DIAGNOSIS: ${message}` },
+      { error: `Gagal: ${message}` },
       { status: 500 }
     );
   }
